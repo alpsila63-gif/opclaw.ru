@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fcd5b8"/>
+      <stop offset="100%" stop-color="#f0b88a"/>
+    </linearGradient>
+    <clipPath id="circle">
+      <circle cx="300" cy="300" r="300"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#circle)">
+    <!-- Background -->
+    <rect width="600" height="600" fill="url(#bg)"/>
+
+    <!-- Decorative elements -->
+    <circle cx="100" cy="100" r="200" fill="#3b82f6" opacity="0.05"/>
+    <circle cx="500" cy="500" r="200" fill="#f97316" opacity="0.05"/>
+
+    <!-- Body / Shoulders -->
+    <ellipse cx="300" cy="580" rx="180" ry="120" fill="#334155"/>
+    <!-- Collar / neckline -->
+    <ellipse cx="300" cy="520" rx="60" ry="30" fill="url(#bg)"/>
+
+    <!-- Neck -->
+    <rect x="270" y="370" width="60" height="80" rx="20" fill="url(#skin)"/>
+
+    <!-- Head -->
+    <ellipse cx="300" cy="280" rx="105" ry="120" fill="url(#skin)"/>
+
+    <!-- Hair -->
+    <ellipse cx="300" cy="210" rx="115" ry="90" fill="#3b2507"/>
+    <rect x="185" y="200" width="230" height="40" rx="20" fill="#3b2507"/>
+    <!-- Side hair -->
+    <rect x="185" y="200" width="30" height="100" rx="12" fill="#3b2507"/>
+    <rect x="385" y="200" width="30" height="100" rx="12" fill="#3b2507"/>
+    <!-- Styled fringe -->
+    <ellipse cx="280" cy="195" rx="70" ry="25" fill="#4a3010" transform="rotate(-5 280 195)"/>
+
+    <!-- Eyes -->
+    <ellipse cx="260" cy="285" rx="14" ry="12" fill="white"/>
+    <ellipse cx="340" cy="285" rx="14" ry="12" fill="white"/>
+    <circle cx="262" cy="287" r="7" fill="#2d1b06"/>
+    <circle cx="342" cy="287" r="7" fill="#2d1b06"/>
+    <circle cx="264" cy="284" r="2.5" fill="white"/>
+    <circle cx="344" cy="284" r="2.5" fill="white"/>
+
+    <!-- Eyebrows -->
+    <rect x="242" y="264" width="36" height="5" rx="2.5" fill="#3b2507" transform="rotate(-3 260 266)"/>
+    <rect x="322" y="264" width="36" height="5" rx="2.5" fill="#3b2507" transform="rotate(3 340 266)"/>
+
+    <!-- Nose -->
+    <ellipse cx="300" cy="315" rx="8" ry="6" fill="#e8a875" opacity="0.6"/>
+
+    <!-- Smile -->
+    <path d="M270 340 Q300 365 330 340" stroke="#c08060" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- Glasses (optional techy look) -->
+    <circle cx="260" cy="285" r="24" stroke="#64748b" stroke-width="3" fill="none"/>
+    <circle cx="340" cy="285" r="24" stroke="#64748b" stroke-width="3" fill="none"/>
+    <line x1="284" y1="285" x2="316" y2="285" stroke="#64748b" stroke-width="3"/>
+    <line x1="236" y1="280" x2="210" y2="272" stroke="#64748b" stroke-width="3"/>
+    <line x1="364" y1="280" x2="390" y2="272" stroke="#64748b" stroke-width="3"/>
+
+    <!-- T-shirt with logo -->
+    <rect x="265" y="480" width="70" height="40" rx="8" fill="url(#accent)" opacity="0.6"/>
+    <text x="300" y="506" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">AI</text>
+
+    <!-- Code brackets decoration -->
+    <text x="80" y="500" font-family="monospace" font-size="48" fill="#3b82f6" opacity="0.12">{</text>
+    <text x="480" y="500" font-family="monospace" font-size="48" fill="#3b82f6" opacity="0.12">}</text>
+    <text x="60" y="180" font-family="monospace" font-size="24" fill="#f97316" opacity="0.1">&lt;/&gt;</text>
+    <text x="470" y="160" font-family="monospace" font-size="24" fill="#22c55e" opacity="0.1">fn()</text>
+  </g>
+
+  <!-- Border ring -->
+  <circle cx="300" cy="300" r="296" stroke="url(#accent)" stroke-width="4" fill="none" opacity="0.3"/>
+  <circle cx="300" cy="300" r="296" stroke="url(#accent)" stroke-width="4" fill="none" opacity="0.8"
+    stroke-dasharray="80 1780" stroke-dashoffset="0"/>
+</svg>

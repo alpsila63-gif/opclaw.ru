@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="openclaw-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="anthropic-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4A574"/>
+      <stop offset="100%" stop-color="#C0885C"/>
+    </linearGradient>
+    <linearGradient id="openai-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10a37f"/>
+      <stop offset="100%" stop-color="#0d8c6d"/>
+    </linearGradient>
+    <linearGradient id="center-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <filter id="shadow-sm">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.06"/>
+    </filter>
+    <filter id="glow-orange">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-tan">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)" rx="24"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.04" stroke="#94a3b8">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="500" x2="800" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="600"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="600" y1="0" x2="600" y2="600"/>
+  </g>
+
+  <!-- Decorative background circles -->
+  <circle cx="140" cy="250" r="180" fill="#f97316" opacity="0.03"/>
+  <circle cx="660" cy="250" r="180" fill="#10a37f" opacity="0.03"/>
+  <circle cx="400" cy="400" r="160" fill="#D4A574" opacity="0.03"/>
+
+  <!-- Connection lines between logos (triangle) -->
+  <g stroke="#cbd5e1" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.5">
+    <!-- OpenClaw to Claude -->
+    <line x1="220" y1="250" x2="510" y2="250"/>
+    <!-- Claude to Codex -->
+    <line x1="590" y1="320" x2="460" y2="440"/>
+    <!-- Codex to OpenClaw -->
+    <line x1="330" y1="440" x2="200" y2="320"/>
+  </g>
+
+  <!-- Animated data pulses on connections -->
+  <circle r="5" fill="#f97316" opacity="0.7">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M220,250 L510,250"/>
+    <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="5" fill="#D4A574" opacity="0.7">
+    <animateMotion dur="3.5s" repeatCount="indefinite" path="M590,320 L460,440"/>
+    <animate attributeName="r" values="3;6;3" dur="3.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="5" fill="#10a37f" opacity="0.7">
+    <animateMotion dur="4s" repeatCount="indefinite" path="M330,440 L200,320"/>
+    <animate attributeName="r" values="3;6;3" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ======== OPENCLAW (Left) ======== -->
+  <g filter="url(#shadow)">
+    <circle cx="140" cy="250" r="72" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  </g>
+  <!-- OpenClaw claw icon -->
+  <g transform="translate(140,235) scale(0.55)">
+    <circle cx="0" cy="0" r="48" fill="url(#openclaw-grad)" opacity="0.12"/>
+    <!-- Simplified claw shape -->
+    <path d="M-8,-35 C5,-40 20,-30 25,-15 C30,0 20,10 8,5 L12,-8 C16,-14 14,-24 5,-28 C-2,-32 -8,-28 -8,-35Z" fill="url(#openclaw-grad)"/>
+    <path d="M15,-28 C22,-18 25,-5 18,8 C12,18 0,22 -10,15 L-2,8 C4,12 12,8 15,0 C18,-8 16,-18 10,-24Z" fill="url(#openclaw-grad)" opacity="0.85"/>
+    <!-- Circuit dots -->
+    <circle cx="-18" cy="5" r="3" fill="url(#openclaw-grad)"/>
+    <circle cx="-25" cy="-8" r="2.5" fill="url(#openclaw-grad)" opacity="0.7"/>
+    <circle cx="-12" cy="15" r="2" fill="url(#openclaw-grad)" opacity="0.5"/>
+    <line x1="-18" y1="5" x2="-25" y2="-8" stroke="url(#openclaw-grad)" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-18" y1="5" x2="-12" y2="15" stroke="url(#openclaw-grad)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  <text x="140" y="325" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e293b" text-anchor="middle">OpenClaw</text>
+  <text x="140" y="345" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">AI-агент для мессенджеров</text>
+  <!-- Feature pills -->
+  <rect x="75" y="358" width="130" height="22" rx="11" fill="#f97316" opacity="0.08"/>
+  <text x="140" y="373" font-family="system-ui, sans-serif" font-size="9" fill="#f97316" text-anchor="middle" font-weight="600">15+ платформ · Open Source</text>
+
+  <!-- ======== CLAUDE CODE (Right) ======== -->
+  <g filter="url(#shadow)">
+    <circle cx="580" cy="250" r="72" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  </g>
+  <!-- Anthropic/Claude logo - stylized A -->
+  <g transform="translate(580,232)">
+    <circle cx="0" cy="0" r="32" fill="url(#anthropic-grad)" opacity="0.12"/>
+    <path d="M-14,16 L0,-20 L14,16 Z" fill="none" stroke="#C0885C" stroke-width="4" stroke-linejoin="round"/>
+    <line x1="0" y1="-20" x2="0" y2="16" stroke="#C0885C" stroke-width="2.5" opacity="0.5"/>
+    <line x1="-7" y1="-2" x2="7" y2="-2" stroke="#C0885C" stroke-width="3"/>
+    <!-- Terminal cursor -->
+    <rect x="18" y="8" width="10" height="3" rx="1" fill="#C0885C" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.1;0.6" dur="1.2s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  <text x="580" y="325" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e293b" text-anchor="middle">Claude Code</text>
+  <text x="580" y="345" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Агентное программирование</text>
+  <!-- Feature pills -->
+  <rect x="510" y="358" width="140" height="22" rx="11" fill="#C0885C" opacity="0.08"/>
+  <text x="580" y="373" font-family="system-ui, sans-serif" font-size="9" fill="#C0885C" text-anchor="middle" font-weight="600">Anthropic · Agentic Coding</text>
+
+  <!-- ======== OPENAI CODEX (Bottom Center) ======== -->
+  <g filter="url(#shadow)">
+    <circle cx="400" cy="470" r="72" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  </g>
+  <!-- OpenAI logo - hexagonal flower -->
+  <g transform="translate(400,455)">
+    <circle cx="0" cy="0" r="32" fill="#10a37f" opacity="0.12"/>
+    <!-- Simplified OpenAI flower/knot -->
+    <g fill="none" stroke="#10a37f" stroke-width="3.5" stroke-linecap="round">
+      <path d="M0,-18 C8,-18 14,-12 14,-4 C14,4 8,10 0,10"/>
+      <path d="M-16,-9 C-12,-16 -4,-18 4,-14 C12,-10 14,-2 10,6"/>
+      <path d="M-16,9 C-20,2 -18,-6 -14,-12"/>
+      <path d="M0,18 C-8,18 -14,12 -14,4 C-14,-4 -8,-10 0,-10"/>
+      <path d="M16,9 C12,16 4,18 -4,14"/>
+      <path d="M16,-9 C20,-2 18,6 14,12"/>
+    </g>
+  </g>
+  <text x="400" y="545" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e293b" text-anchor="middle">OpenAI Codex</text>
+  <text x="400" y="565" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Мультиагентная разработка</text>
+  <!-- Feature pills -->
+  <rect x="332" y="575" width="136" height="22" rx="11" fill="#10a37f" opacity="0.08"/>
+  <text x="400" y="590" font-family="system-ui, sans-serif" font-size="9" fill="#10a37f" text-anchor="middle" font-weight="600">GPT-5 · Cloud · Desktop</text>
+
+  <!-- ======== Center badge ======== -->
+  <g filter="url(#shadow-sm)">
+    <rect x="325" y="300" width="150" height="44" rx="22" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  </g>
+  <circle cx="348" cy="322" r="6" fill="#f97316"/>
+  <circle cx="365" cy="322" r="6" fill="#C0885C"/>
+  <circle cx="382" cy="322" r="6" fill="#10a37f"/>
+  <text x="400" y="327" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle" dx="14">Вместе</text>
+
+  <!-- Small orbiting features around the triangle -->
+  <!-- Messenger icons near OpenClaw -->
+  <g filter="url(#shadow-sm)">
+    <circle cx="52" cy="150" r="20" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  </g>
+  <text x="52" y="155" font-family="Arial" font-size="14" text-anchor="middle">💬</text>
+
+  <g filter="url(#shadow-sm)">
+    <circle cx="52" cy="350" r="20" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  </g>
+  <text x="52" y="355" font-family="Arial" font-size="14" text-anchor="middle">🎙️</text>
+
+  <!-- Code icons near Claude Code -->
+  <g filter="url(#shadow-sm)">
+    <circle cx="700" cy="150" r="20" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  </g>
+  <text x="700" y="156" font-family="monospace" font-size="12" text-anchor="middle" fill="#64748b" font-weight="bold">&gt;_</text>
+
+  <g filter="url(#shadow-sm)">
+    <circle cx="720" cy="370" r="20" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  </g>
+  <text x="720" y="375" font-family="Arial" font-size="14" text-anchor="middle">⚡</text>
+
+  <!-- Cloud icon near Codex -->
+  <g filter="url(#shadow-sm)">
+    <circle cx="270" cy="530" r="20" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  </g>
+  <text x="270" y="535" font-family="Arial" font-size="14" text-anchor="middle">☁️</text>
+
+  <g filter="url(#shadow-sm)">
+    <circle cx="530" cy="540" r="20" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  </g>
+  <text x="530" y="545" font-family="Arial" font-size="14" text-anchor="middle">🤖</text>
+
+  <!-- Title at top -->
+  <text x="400" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1e293b" text-anchor="middle">Три инструмента — одна экосистема</text>
+  <text x="400" y="68" font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Внедряем в комплексе или по отдельности</text>
+</svg>

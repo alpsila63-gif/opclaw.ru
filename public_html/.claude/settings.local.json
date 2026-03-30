@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:openclaw.ru)",
+      "Bash(curl -s \"https://openclaw.ru\")",
+      "Bash(for f in favicon.ico favicon-32x32.png favicon-16x16.png apple-touch-icon.png site.webmanifest)",
+      "Bash(do echo -n \"$f: \")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} \\(%{size_download} bytes\\)\" \"https://openclaw.ru/$f\")",
+      "Bash(done)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://openclaw.ru/images/hero.svg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://openclaw.ru/images/logo.png\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://openclaw.ru/images/about.svg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://openclaw.ru/images/avatar.svg\")",
+      "Bash(ls /tmp/icon_*.png)",
+      "Bash(for i in 3 5 7 9 10)",
+      "Bash(do curl -s -o \"C:/Users/Алекс/Сайты/Openclaw/test_icon$i.svg\" \"https://openclaw.ru/storage/model-icons/$i.svg\")",
+      "Bash(ls -la \"C:/Users/Алекс/Сайты/Openclaw/test_icon\"*)",
+      "Bash(convert --version)",
+      "Bash(python -c \"from PIL import Image; print\\(''Pillow OK''\\)\")",
+      "Bash(python:*)"
+    ]
+  }
+}

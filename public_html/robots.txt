@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /.well-known/
+Disallow: /*?*
+
+Host: opclaw.ru
+Sitemap: https://opclaw.ru/sitemap.xml
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+

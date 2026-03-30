@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Russia — Разработка и внедрение AI-агентов | Claude Code, Codex, ИИ-автоматизация</title>
+    <meta name="description" content="Разработка и внедрение OpenClaw, Claude Code и OpenAI Codex — в комплексе или по отдельности. Настройка AI-агентов, ИИ-автоматизация бизнеса, агентное программирование. Профессиональные услуги по внедрению искусственного интеллекта в России.">
+    <meta name="keywords" content="OpenClaw, Claude Code, OpenAI Codex, AI-агент, ИИ-агент, искусственный интеллект, внедрение ИИ, автоматизация с ИИ, настройка AI агента, агентное программирование, Claude Sonnet, Claude Opus, GPT Codex, agentic coding, нейросети для бизнеса, разработка AI агентов, MCP, Telegram бот ИИ, AI ассистент, ИИ автоматизация, нейросеть настройка, DeepSeek, Gemini, мультиагентные системы, RAG система, внедрение нейросетей">
+    <meta name="author" content="OpenClaw Russia">
+    <link rel="canonical" href="https://openclaw.ru">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="OpenClaw Russia — Разработка и внедрение AI-агентов | Claude Code, Codex">
+    <meta property="og:description" content="Разработка и внедрение OpenClaw, Claude Code и OpenAI Codex — в комплексе или по отдельности. ИИ-автоматизация бизнеса в России.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://openclaw.ru">
+    <meta property="og:image" content="images/about.svg">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="OpenClaw Russia">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f97316">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "OpenClaw Russia",
+        "description": "Разработка и внедрение AI-агентов на базе OpenClaw, Claude Code и OpenAI Codex. ИИ-автоматизация бизнеса в России.",
+        "url": "https://openclaw.ru",
+        "telephone": "+79528142010",
+        "areaServed": "RU",
+        "serviceType": ["Внедрение искусственного интеллекта", "Разработка AI-агентов", "Настройка Claude Code", "Настройка OpenAI Codex", "ИИ-автоматизация бизнеса"],
+        "knowsAbout": ["OpenClaw", "Claude Code", "OpenAI Codex", "AI-агенты", "Агентное программирование", "MCP", "RAG-системы"],
+        "priceRange": "от 5000 руб."
+    }
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107025632', 'ym');
+
+        ym(107025632, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <noscript><div><img src="https://mc.yandex.ru/watch/107025632" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <span class="top-bar-phone"><a href="tel:+79528142010">+7 952 814 20 10</a></span>
+        <span style="opacity:0.4">|</span>
+        <span>Бесплатная консультация</span>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="images/logo.png" alt="OpenClaw" class="nav-logo-img">
+                <span class="nav-logo-text">OpenClaw</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">О проекте</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#pricing">Цены</a></li>
+                <li><a href="#process">Процесс</a></li>
+                <li><a href="#me">Обо мне</a></li>
+                <li><a href="#contact" class="nav-cta nav-cta-desktop">Связаться</a></li>
+            </ul>
+            <div class="nav-right-mobile">
+                <a href="tel:+79528142010" class="nav-cta nav-cta-mobile">&#128222; Позвонить</a>
+                <button class="nav-burger" id="navBurger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">О проекте</a>
+        <a href="#features">Возможности</a>
+        <a href="#services">Услуги</a>
+        <a href="#pricing">Цены</a>
+        <a href="#process">Процесс</a>
+        <a href="#compare">Сравнение</a>
+        <a href="#me">Обо мне</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Связаться</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">OpenClaw · Claude Code · Codex</div>
+            <h1>Разработка и внедрение<br><span>AI-агентов</span></h1>
+            <p class="hero-sub">OpenClaw, Claude Code и OpenAI Codex — настроим в комплексе или по отдельности. Агентное программирование, ИИ-автоматизация бизнеса и персональные AI-ассистенты под ваши задачи.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary">Смотреть тарифы</a>
+                <a href="#contact" class="btn btn-secondary">Бесплатная консультация</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/about.svg" alt="Три инструмента — одна экосистема: OpenClaw, Claude Code и OpenAI Codex" loading="lazy">
+        </div>
+    </section>
+
+    <!-- ABOUT OPENCLAW -->
+    <section id="about">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">OpenClaw + Claude Code + Codex</span>
+                <h2 class="section-title">Три мощных AI-инструмента<br>для вашего бизнеса</h2>
+                <p class="section-desc">OpenClaw — open-source AI-агент нового поколения. В связке с Claude Code и OpenAI Codex — это полный стек для ИИ-автоматизации: от мессенджеров до агентного программирования.</p>
+            </div>
+            <div class="about-grid fade-in">
+                <div class="about-text">
+                    <h3>Ваш JARVIS стал реальностью</h3>
+                    <p>OpenClaw — один из самых быстрорастущих open-source AI-проектов с 100K+ звёзд на GitHub. Интегрируется с 50+ сервисами: мессенджеры, календари, почта, CRM и файловая система. В паре с Claude Code (агентное программирование от Anthropic) и OpenAI Codex — это полноценная экосистема ИИ-автоматизации.</p>
+                    <p>В отличие от обычных чат-ботов, OpenClaw — это автономный ИИ-агент, который планирует, принимает решения и выполняет многошаговые задачи. Claude Code добавляет мощь агентного кодинга, а Codex — автоматизацию разработки с GPT-5.</p>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <div class="about-stat-num">100K+</div>
+                            <div class="about-stat-label">GitHub звёзд</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-num">50+</div>
+                            <div class="about-stat-label">Интеграций</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-num">15+</div>
+                            <div class="about-stat-label">Мессенджеров</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/hero.svg" alt="OpenClaw Dashboard" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Возможности</span>
+                <h2 class="section-title">Всё, что нужно<br>для ИИ-автоматизации</h2>
+                <p class="section-desc">OpenClaw, Claude Code и Codex объединяют лучшие AI-модели с вашими инструментами для бесшовной автоматизации бизнеса.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon blue">&#128172;</div>
+                    <h3>Мульти-мессенджер</h3>
+                    <p>WhatsApp, Telegram, Slack, Discord, Signal, Teams и ещё 10+ платформ в одном агенте.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon orange">&#127911;</div>
+                    <h3>Голосовое управление</h3>
+                    <p>Wake Word + Talk Mode с ElevenLabs. Управляйте агентом голосом на macOS, iOS и Android.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon purple">&#129520;</div>
+                    <h3>100+ навыков</h3>
+                    <p>Готовые AgentSkills: работа с файлами, веб-автоматизация, shell-команды и пользовательские скрипты.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon green">&#128274;</div>
+                    <h3>Приватность</h3>
+                    <p>Данные остаются у вас. Локальный запуск, свои API-ключи, без отправки данных в облако.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon pink">&#129302;</div>
+                    <h3>Мульти-агенты</h3>
+                    <p>Маршрутизация каналов к изолированным агентам. Каждый агент — свой workspace и сессия.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon cyan">&#9889;</div>
+                    <h3>Любая LLM-модель</h3>
+                    <p>Claude, GPT, DeepSeek, Gemini или локальные модели. Вы выбираете, какой «мозг» у агента.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Услуги</span>
+                <h2 class="section-title">Что я делаю</h2>
+                <p class="section-desc">Полный цикл внедрения ИИ: от консультации до запуска рабочего AI-агента на базе OpenClaw, Claude Code или Codex под ваши задачи.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-num">01</div>
+                    <h3>Установка и настройка</h3>
+                    <p>Разворачиваю OpenClaw, Claude Code или Codex на вашем сервере или локальной машине с нуля.</p>
+                    <ul class="service-list">
+                        <li>Установка OpenClaw / Claude Code / Codex</li>
+                        <li>Настройка окружения и зависимостей</li>
+                        <li>Подключение AI-моделей (Claude, GPT, DeepSeek)</li>
+                        <li>Интеграция с мессенджерами и MCP</li>
+                        <li>Базовое тестирование</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-num">02</div>
+                    <h3>Разработка AI-агентов</h3>
+                    <p>Создаю кастомных ИИ-агентов под бизнес-задачи: мультиагентные системы, агентное программирование, RAG.</p>
+                    <ul class="service-list">
+                        <li>Проектирование логики AI-агента</li>
+                        <li>Разработка AgentSkills и AGENTS.md</li>
+                        <li>Интеграция с CRM, почтой, календарём</li>
+                        <li>RAG-системы с корпоративными базами знаний</li>
+                        <li>Мультиагентная маршрутизация и автоматизация</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-num">03</div>
+                    <h3>Поддержка и обучение</h3>
+                    <p>Помогаю освоить ИИ-инструменты и поддерживаю работоспособность системы.</p>
+                    <ul class="service-list">
+                        <li>Обучение работе с OpenClaw, Claude Code, Codex</li>
+                        <li>Документация и AGENTS.md для вашего проекта</li>
+                        <li>Обновление и мониторинг AI-систем</li>
+                        <li>Исправление ошибок и оптимизация</li>
+                        <li>Добавление новых ИИ-интеграций</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Тарифы</span>
+                <h2 class="section-title">Прозрачные цены</h2>
+                <p class="section-desc">Конкурентные тарифы для новичков и бизнеса. Без скрытых платежей.</p>
+            </div>
+            <div class="pricing-grid">
+                <!-- STARTER -->
+                <div class="pricing-card fade-in">
+                    <div class="pricing-badge">Популярный</div>
+                    <div class="pricing-name">Старт</div>
+                    <div class="pricing-desc">Базовая установка и настройка</div>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">5 000</span>
+                    </div>
+                    <div class="pricing-period">руб. / разовая оплата</div>
+                    <ul class="pricing-features">
+                        <li>Установка OpenClaw на VPS/ПК</li>
+                        <li>Подключение 1 AI-модели</li>
+                        <li>Подключение 1 мессенджера</li>
+                        <li>Базовая настройка промтов</li>
+                        <li>Инструкция по использованию</li>
+                        <li>3 дня поддержки после установки</li>
+                    </ul>
+                    <a href="#contact" class="pricing-btn pricing-btn-outline">Заказать</a>
+                </div>
+
+                <!-- PRO -->
+                <div class="pricing-card featured fade-in">
+                    <div class="pricing-badge">Лучший выбор</div>
+                    <div class="pricing-name">Бизнес</div>
+                    <div class="pricing-desc">Полная настройка + кастомный агент</div>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">15 000</span>
+                    </div>
+                    <div class="pricing-period">руб. / разовая оплата</div>
+                    <ul class="pricing-features">
+                        <li>Всё из тарифа «Старт»</li>
+                        <li>Подключение до 3 мессенджеров</li>
+                        <li>Разработка 1 кастомного AgentSkill</li>
+                        <li>Интеграция с CRM или почтой</li>
+                        <li>Настройка мульти-агентной маршрутизации</li>
+                        <li>Голосовое управление (ElevenLabs)</li>
+                        <li>7 дней поддержки</li>
+                    </ul>
+                    <a href="#contact" class="pricing-btn pricing-btn-fill">Заказать</a>
+                </div>
+
+                <!-- ENTERPRISE -->
+                <div class="pricing-card fade-in">
+                    <div class="pricing-badge">Популярный</div>
+                    <div class="pricing-name">Под ключ</div>
+                    <div class="pricing-desc">Комплексная автоматизация</div>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">35 000</span>
+                    </div>
+                    <div class="pricing-period">руб. / проект</div>
+                    <ul class="pricing-features">
+                        <li>Всё из тарифа «Бизнес»</li>
+                        <li>Безлимитные мессенджеры</li>
+                        <li>До 5 кастомных AgentSkills</li>
+                        <li>RAG-система с базой знаний</li>
+                        <li>Cron-задачи и вебхуки</li>
+                        <li>Полная документация проекта</li>
+                        <li>30 дней поддержки</li>
+                    </ul>
+                    <a href="#contact" class="pricing-btn pricing-btn-outline">Обсудить проект</a>
+                </div>
+            </div>
+
+            <div class="pricing-note">
+                <p>Нужна постоянная поддержка? Ретейнер от <strong>3 000 руб./мес.</strong> — обновления, мониторинг и помощь.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Как это работает</span>
+                <h2 class="section-title">4 шага до<br>вашего AI-агента</h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step fade-in">
+                    <div class="process-step-num">1</div>
+                    <h3>Консультация</h3>
+                    <p>Разбираемся с вашими задачами, выбираем модель и платформу.</p>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="process-step-num">2</div>
+                    <h3>Установка</h3>
+                    <p>Разворачиваю OpenClaw на вашем сервере и настраиваю окружение.</p>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="process-step-num">3</div>
+                    <h3>Настройка</h3>
+                    <p>Подключаю мессенджеры, AI-модели, создаю навыки и автоматизации.</p>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="process-step-num">4</div>
+                    <h3>Запуск</h3>
+                    <p>Тестируем, обучаю вас работе с системой, передаю документацию.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section id="compare">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Сравнение</span>
+                <h2 class="section-title">Рынок AI-агентов и инструментов</h2>
+                <p class="section-desc">Сравнение OpenClaw, Claude Code, Codex и других AI-инструментов для разработки и автоматизации.</p>
+            </div>
+            <div class="compare-table-wrapper fade-in">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Инструмент</th>
+                            <th>Цена (мес.)</th>
+                            <th>Open Source</th>
+                            <th>Автономный агент</th>
+                            <th>Мессенджеры</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td><strong>OpenClaw</strong></td>
+                            <td>Бесплатно *</td>
+                            <td class="compare-check">&#10003;</td>
+                            <td class="compare-check">&#10003;</td>
+                            <td class="compare-check">15+</td>
+                        </tr>
+                        <tr>
+                            <td>Claude Code (Pro)</td>
+                            <td>$20/мес</td>
+                            <td class="compare-x">&#10007;</td>
+                            <td class="compare-check">&#10003;</td>
+                            <td class="compare-x">&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>Cursor Pro</td>
+                            <td>$20/мес</td>
+                            <td class="compare-x">&#10007;</td>
+                            <td class="compare-check">&#10003;</td>
+                            <td class="compare-x">&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>Windsurf Pro</td>
+                            <td>$15/мес</td>
+                            <td class="compare-x">&#10007;</td>
+                            <td class="compare-check">&#10003;</td>
+                            <td class="compare-x">&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>Devin 2.0</td>
+                            <td>от $20/мес</td>
+                            <td class="compare-x">&#10007;</td>
+                            <td class="compare-check">&#10003;</td>
+                            <td class="compare-x">&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub Copilot</td>
+                            <td>от $10/мес</td>
+                            <td class="compare-x">&#10007;</td>
+                            <td class="compare-x">&#10007;</td>
+                            <td class="compare-x">&#10007;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pricing-note" style="margin-top: 24px;">
+                <p>* OpenClaw бесплатен, но требует API-ключи для AI-моделей (оплата по токенам провайдеру).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="me">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Обо мне</span>
+                <h2 class="section-title">Кто за этим стоит</h2>
+            </div>
+            <div class="about-me-grid fade-in">
+                <div class="about-me-photo">
+                    <img src="images/avatar.svg" alt="Алекс — AI-разработчик">
+                </div>
+                <div class="about-me-text">
+                    <h3>Привет, я Алекс</h3>
+                    <div class="about-me-role">Специалист по внедрению ИИ и разработке AI-агентов</div>
+                    <p>Я специалист, увлечённый миром искусственного интеллекта и агентного программирования. Работаю с OpenClaw, Claude Code и OpenAI Codex с первых дней существования этих проектов.</p>
+                    <p>Верю, что ИИ-автоматизация должна быть доступна каждому — не только крупным компаниям с бюджетами в сотни тысяч. Поэтому предлагаю честные цены и прозрачный подход к внедрению AI-решений.</p>
+                    <p>Каждый проект — это возможность помочь вам внедрить технологии, которые реально экономят время: от настройки мультиагентных систем до автоматизации бизнес-процессов с нейросетями.</p>
+                    <div class="about-me-tags">
+                        <span class="about-me-tag">OpenClaw</span>
+                        <span class="about-me-tag">Claude Code</span>
+                        <span class="about-me-tag">OpenAI Codex</span>
+                        <span class="about-me-tag">AI-агенты</span>
+                        <span class="about-me-tag">Промт-инженерия</span>
+                        <span class="about-me-tag">ИИ-автоматизация</span>
+                        <span class="about-me-tag">MCP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Вопросы</span>
+                <h2 class="section-title">Частые вопросы</h2>
+            </div>
+            <div class="faq-list fade-in">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Чем отличаются OpenClaw, Claude Code и Codex?</span>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">OpenClaw — open-source AI-агент для мессенджеров, автоматизации и голосового управления (15+ платформ). Claude Code — агентный инструмент от Anthropic для программирования из терминала (agentic coding). OpenAI Codex — облачный AI-агент для разработки с мультиагентными workflow. Все три можно внедрить в комплексе или по отдельности под ваши задачи.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Что нужно для начала работы?</span>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Для OpenClaw: VPS-сервер или локальный ПК с Node.js и API-ключ от AI-модели (Claude, GPT, DeepSeek). Для Claude Code: подписка Anthropic Pro/Max. Для Codex: подписка OpenAI. Всё остальное — установку, настройку и интеграцию — я сделаю за вас.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Сколько стоит использование AI-моделей?</span>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">OpenClaw бесплатен — вы платите только за API-ключи: Claude Sonnet ~$3 за 1 млн токенов, GPT-5 Codex ~$2.50. Claude Code Pro — $20/мес, Max — $100/мес. OpenAI Codex доступен от $20/мес. Для типичного использования OpenClaw это $5–20 в месяц.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Можно ли запустить без VPS, на обычном ПК?</span>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Да, OpenClaw отлично работает локально на Windows, macOS и Linux. Но для круглосуточной работы рекомендую VPS — от 500 руб./мес.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Безопасно ли это?</span>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">OpenClaw работает локально — ваши данные не уходят на чужие серверы. Однако важно правильно настроить безопасность: ограничить доступ, использовать надёжные пароли, не ставить непроверенные Skills. Я помогу с настройкой безопасности.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Почему так недорого по сравнению с агентствами?</span>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Я работаю как фрилансер без офиса и штата менеджеров. Нет накладных расходов — только честная оплата за работу. Агентства берут 200–800 тыс. руб. за аналогичные задачи.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Какие мессенджеры поддерживаются?</span>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">WhatsApp, Telegram, Slack, Discord, Signal, Google Chat, Microsoft Teams, Matrix, iMessage (через BlueBubbles), Zalo, WebChat и другие. Полный список — более 15 платформ.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Контакты</span>
+                <h2 class="section-title">Давайте начнём</h2>
+                <p class="section-desc">Напишите мне, и я отвечу в течение 24 часов.</p>
+            </div>
+            <div class="contact-grid fade-in">
+                <div class="contact-info">
+                    <h3>Свяжитесь со мной</h3>
+                    <p>Расскажите о вашем проекте — я предложу оптимальное решение и бесплатно проконсультирую по внедрению OpenClaw, Claude Code или Codex.</p>
+
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">&#128231;</div>
+                        <div class="contact-detail-text">
+                            <strong>Email</strong>
+                            your@email.com
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">&#128172;</div>
+                        <div class="contact-detail-text">
+                            <strong>Telegram</strong>
+                            @your_telegram
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">&#128197;</div>
+                        <div class="contact-detail-text">
+                            <strong>Время ответа</strong>
+                            До 24 часов
+                        </div>
+                    </div>
+                </div>
+                <!-- ВАЖНО: Замени YOUR_EMAIL@GMAIL.COM на свой email -->
+                <form class="contact-form" action="https://formsubmit.co/YOUR_EMAIL@GMAIL.COM" method="POST">
+                    <input type="hidden" name="_subject" value="Новая заявка с сайта OpenClaw">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="">
+                    <input type="text" name="_honey" style="display:none">
+
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" placeholder="Как к вам обращаться?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email или Telegram</label>
+                        <input type="text" id="email" name="email" placeholder="email@example.com или @telegram" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="plan">Интересующий тариф</label>
+                        <select id="plan" name="plan">
+                            <option value="">Выберите тариф</option>
+                            <option value="Старт — 5 000 руб.">Старт — 5 000 руб.</option>
+                            <option value="Бизнес — 15 000 руб.">Бизнес — 15 000 руб.</option>
+                            <option value="Под ключ — 35 000 руб.">Под ключ — 35 000 руб.</option>
+                            <option value="Просто консультация">Просто консультация</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Расскажите о задаче</label>
+                        <textarea id="message" name="message" placeholder="Опишите, что хотите автоматизировать..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content fade-in">
+            <h2>Готовы внедрить ИИ?</h2>
+            <p>Начните с бесплатной консультации. Разберёмся, какой AI-агент — OpenClaw, Claude Code или Codex — подойдёт именно вам.</p>
+            <a href="#contact" class="btn btn-primary">Написать мне</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copy">&copy; 2026 OpenClaw Russia. Все права защищены.</div>
+            <ul class="footer-links">
+                <li><a href="#about">О проекте</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#pricing">Цены</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+
+</body>
+</html>
