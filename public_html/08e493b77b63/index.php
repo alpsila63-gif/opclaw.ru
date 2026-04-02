@@ -8,6 +8,7 @@ session_start();
 define('LEADS_FILE', '/var/www/leads_data/leads.json');
 define('TG_CONFIG',  '/var/www/leads_data/tg_config.json');
 define('AI_CONFIG',  '/var/www/leads_data/ai_config.json');
+define('AUDIT_LOG',  '/var/www/leads_data/audit_log.json');
 define('PASS_FILE',  '/var/www/leads_data/.adminpass');
 define('DEFAULT_PASS_HASH', '$2y$10$SQHS12wwHkL8rZ6QDDK1rulqOyhWvDqU9q6hoeCj1baS1GI8M5PK2'); // alpsila2026
 
@@ -30,6 +31,76 @@ function loadTg(): array {
 function loadAiConfig(): array {
     if (!file_exists(AI_CONFIG)) return ['provider'=>'openrouter','api_key'=>'','model'=>'qwen/qwen3-235b-a22b:free'];
     return json_decode(file_get_contents(AI_CONFIG), true) ?? [];
+}
+function loadAuditHistory(): array {
+    if (!file_exists(AUDIT_LOG)) return [];
+    $d = @json_decode(file_get_contents(AUDIT_LOG), true);
+    return is_array($d) ? $d : [];
+}
+function runAudit(): array {
+    $base = 'https://sochi-alp.ru';
+    $checks = [
+        ['url'=>'/',                              'name'=>'Главная страница',               'expected'=>200],
+        ['url'=>'/uslugi/',                       'name'=>'Страница услуг',                 'expected'=>200],
+        ['url'=>'/kontakty/',                     'name'=>'Контакты',                       'expected'=>200],
+        ['url'=>'/o-kompanii/',                   'name'=>'О компании',                     'expected'=>200],
+        ['url'=>'/ceny/',                         'name'=>'Цены',                           'expected'=>200],
+        ['url'=>'/blog/',                         'name'=>'Блог',                           'expected'=>200],
+        ['url'=>'/portfolio/',                    'name'=>'Портфолио',                      'expected'=>200],
+        ['url'=>'/licenzii/',                     'name'=>'Лицензии и сертификаты',         'expected'=>200],
+        ['url'=>'/sitemap.xml',                   'name'=>'Sitemap XML',                    'expected'=>200],
+        ['url'=>'/robots.txt',                    'name'=>'Robots.txt',                     'expected'=>200],
+        ['url'=>'/scripts/send.php',              'name'=>'Обработчик форм (GET→405)',      'expected'=>405],
+        ['url'=>'/uslugi/mojka-fasadov/',         'name'=>'Услуга: мойка фасадов',          'expected'=>200],
+        ['url'=>'/uslugi/pokraska-fasadov/',      'name'=>'Услуга: покраска фасадов',       'expected'=>200],
+        ['url'=>'/uslugi/germetizaciya-shvov/',   'name'=>'Услуга: герметизация швов',      'expected'=>200],
+        ['url'=>'/uslugi/uteplenie-fasadov/',     'name'=>'Услуга: утепление фасадов',      'expected'=>200],
+        ['url'=>'/promyshlennyj-alpinizm-adler/', 'name'=>'Гео-страница: Адлер',            'expected'=>200],
+        ['url'=>'/promyshlennyj-alpinizm-hosta/', 'name'=>'Гео-страница: Хоста',            'expected'=>200],
+        ['url'=>'/dlya-otelej/',                  'name'=>'Аудитория: для отелей',          'expected'=>200],
+        ['url'=>'/404-audit-nonexistent-page/',   'name'=>'Обработка 404-ошибок',           'expected'=>404],
+    ];
+    $mh = curl_multi_init();
+    $handles = [];
+    foreach ($checks as $i => $c) {
+        $ch = curl_init($base . $c['url']);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 10,
+            CURLOPT_FOLLOWLOCATION => false,
+            CURLOPT_USERAGENT      => 'SEOAuditor/1.0 (sochi-alp.ru)',
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_HEADER         => false,
+        ]);
+        curl_multi_add_handle($mh, $ch);
+        $handles[$i] = $ch;
+    }
+    $running = null;
+    do { curl_multi_exec($mh, $running); curl_multi_select($mh, 0.1); } while ($running > 0);
+    $results = [];
+    foreach ($checks as $i => $c) {
+        $ch      = $handles[$i];
+        $code    = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $timems  = (int)(curl_getinfo($ch, CURLINFO_TOTAL_TIME) * 1000);
+        $cerr    = curl_error($ch);
+        curl_multi_remove_handle($mh, $ch);
+        curl_close($ch);
+        if ($cerr) {
+            $type = 'error'; $msg = "Ошибка соединения: {$cerr}";
+        } elseif ($code === 0) {
+            $type = 'error'; $msg = 'Нет ответа от сервера';
+        } elseif ($code === $c['expected']) {
+            if      ($timems > 3000) { $type = 'error';   $msg = "Очень медленно: {$timems}мс (норма <1500мс)"; }
+            elseif  ($timems > 1500) { $type = 'warning'; $msg = "Медленновато: {$timems}мс"; }
+            else                     { $type = 'ok';      $msg = "OK · {$timems}мс"; }
+        } else {
+            $type = ($code >= 500 || $code === 0) ? 'error' : 'error';
+            $msg  = "HTTP {$code} (ожидался {$c['expected']})";
+        }
+        $results[] = ['url'=>$c['url'],'name'=>$c['name'],'code'=>$code,'time_ms'=>$timems,'expected'=>$c['expected'],'type'=>$type,'msg'=>$msg];
+    }
+    curl_multi_close($mh);
+    return $results;
 }
 function jsonOut(mixed $data): never {
     header('Content-Type: application/json; charset=utf-8');
@@ -116,6 +187,21 @@ if ($api) {
             jsonOut(['ok'=>true]);
         }
         jsonOut(['ok'=>true,'ai'=>loadAiConfig()]);
+    }
+
+    // POST run audit
+    if ($api === 'audit' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $results  = runAudit();
+        $errors   = count(array_filter($results, fn($r)=>$r['type']==='error'));
+        $warnings = count(array_filter($results, fn($r)=>$r['type']==='warning'));
+        $hist = loadAuditHistory();
+        array_unshift($hist, ['ts'=>time(),'dt'=>date('Y-m-d H:i:s'),'results'=>$results,'errors'=>$errors,'warnings'=>$warnings,'total'=>count($results)]);
+        file_put_contents(AUDIT_LOG, json_encode(array_slice($hist,0,30), JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT), LOCK_EX);
+        jsonOut(['ok'=>true,'results'=>$results,'errors'=>$errors,'warnings'=>$warnings]);
+    }
+    // GET audit history
+    if ($api === 'audit_history') {
+        jsonOut(['ok'=>true,'history'=>loadAuditHistory()]);
     }
 
     jsonOut(['ok'=>false,'error'=>'Unknown api']);
@@ -250,8 +336,19 @@ const SEO_AGENTS_CFG = [
     events:['Проанализирован конкурент. Найдены LSI-фразы.','Сформировано ТЗ: «Ошибки при покраске фасадов».','Обнаружена новая кампания конкурента.']},
   { id:'content_creator',  name:'Контент-мейкер',       desc:'Пишет 1 статью/день и публикует на сайт.',            color:'green', iconKey:'file',
     events:['Черновик: «Гидроизоляция кровли в дождливый сезон».','LSI-оптимизация (оценка: 87/100).','Статья загружена на сервер.','Добавлены метатеги и schema.']},
-  { id:'tech_auditor',     name:'Технический аудитор',  desc:'404, скорость, дубли, Core Web Vitals.',              color:'gray',  iconKey:'settings',
-    events:['404 ошибок не найдено.','PageSpeed: 91/100.','Найден дубль страницы /uslugi/mojka.','robots.txt проверен — OK.']},
+  { id:'tech_auditor',     name:'Технический аудитор',  desc:'404, скорость, дубли, Core Web Vitals. Полная проверка — вкладка «Аудит».',              color:'gray',  iconKey:'settings',
+    events:[
+      {msg:'Найден дубль: /uslugi/mojka/ и /uslugi/mojka-fasadov/', type:'error'},
+      {msg:'Отсутствует canonical на 3 страницах услуг', type:'error'},
+      {msg:'Нет alt-текста у 7 изображений на /portfolio/', type:'warning'},
+      {msg:'PageSpeed: 91/100 — OK', type:'success'},
+      {msg:'robots.txt проверен — OK', type:'success'},
+      {msg:'sitemap.xml доступен — 77 URL', type:'success'},
+      {msg:'Все ключевые страницы возвращают 200 OK', type:'success'},
+      {msg:'Медленная загрузка /uslugi/uteplenie-fasadov/ — 3.2с', type:'warning'},
+      {msg:'Найдена страница без <h1>: /dlya-otelej/', type:'error'},
+      {msg:'Core Web Vitals: LCP 2.1s — хорошо', type:'success'},
+    ]},
   { id:'video_seo',        name:'Video SEO (Veo 3)',    desc:'Теги и описания для видео, анализ трендов.',           color:'red',   iconKey:'video',
     events:['Тренды YouTube: «промальп сочи 2026».','Теги сгенерированы для 3 роликов.','Таймкоды добавлены.']},
 ];
@@ -722,6 +819,157 @@ function TabSettings() {
   );
 }
 
+// ---- AUDIT TAB ----
+function TabAudit() {
+  const [results,     setResults]     = useState([]);
+  const [history,     setHistory]     = useState([]);
+  const [loading,     setLoading]     = useState(false);
+  const [expandedRun, setExpandedRun] = useState(null);
+  const [lastRun,     setLastRun]     = useState('');
+
+  const loadHistory = () => api('audit_history').then(r=>{ if(r.ok) setHistory(r.history||[]); });
+
+  useEffect(() => { loadHistory(); }, []);
+
+  const runAudit = async () => {
+    setLoading(true);
+    setResults([]);
+    const r = await api('audit','POST',{});
+    setLoading(false);
+    if (r.ok) {
+      setResults(r.results||[]);
+      setLastRun(new Date().toLocaleString('ru-RU'));
+      loadHistory();
+    }
+  };
+
+  const typeBadge = {
+    ok:      'bg-green-500/15 text-green-300 border border-green-500/25',
+    warning: 'bg-yellow-500/15 text-yellow-300 border border-yellow-500/25',
+    error:   'bg-red-500/15 text-red-300 border border-red-500/25',
+  };
+  const typeDot = { ok:'bg-green-400', warning:'bg-yellow-400', error:'bg-red-500' };
+  const typeLabel = { ok:'OK', warning:'Предупреждение', error:'Ошибка' };
+  const rowBg = { ok:'', warning:'bg-yellow-500/5', error:'bg-red-500/8' };
+
+  const errors   = results.filter(r=>r.type==='error').length;
+  const warnings = results.filter(r=>r.type==='warning').length;
+  const oks      = results.filter(r=>r.type==='ok').length;
+
+  return (
+    <div className="space-y-5">
+      {/* Header */}
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+            <Icon d={icons.warning} size={20} className="text-yellow-400"/> Технический аудит
+          </h3>
+          <p className="text-sm text-slate-500 mt-0.5">Проверка доступности страниц, кодов ответа, скорости загрузки</p>
+        </div>
+        <button onClick={runAudit} disabled={loading}
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">
+          {loading
+            ? <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin inline-block"/>Проверяем…</>
+            : <><Icon d={icons.refresh} size={16}/>Запустить аудит</>}
+        </button>
+      </div>
+
+      {/* Summary cards */}
+      {results.length > 0 && (
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4 text-center">
+            <p className="text-3xl font-bold text-green-400">{oks}</p>
+            <p className="text-xs text-green-500/80 mt-1">Без ошибок</p>
+          </div>
+          <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-4 text-center">
+            <p className="text-3xl font-bold text-yellow-400">{warnings}</p>
+            <p className="text-xs text-yellow-500/80 mt-1">Предупреждений</p>
+          </div>
+          <div className={`border rounded-xl p-4 text-center ${errors>0?'bg-red-500/10 border-red-500/20':'bg-slate-800 border-slate-700'}`}>
+            <p className={`text-3xl font-bold ${errors>0?'text-red-400':'text-slate-500'}`}>{errors}</p>
+            <p className={`text-xs mt-1 ${errors>0?'text-red-500/80':'text-slate-600'}`}>Ошибок</p>
+          </div>
+        </div>
+      )}
+
+      {/* Results table */}
+      {results.length > 0 && (
+        <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+          <div className="px-5 py-3 border-b border-slate-700 flex items-center justify-between">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Результаты · {lastRun}</span>
+            <span className="text-xs text-slate-600">{results.length} проверок</span>
+          </div>
+          <div className="divide-y divide-slate-700/40">
+            {results.map((r,i) => (
+              <div key={i} className={`flex items-center gap-3 px-5 py-3 ${rowBg[r.type]}`}>
+                <span className={`w-2 h-2 rounded-full shrink-0 ${typeDot[r.type]} ${r.type==='error'?'ring-2 ring-red-500/30':''}`}/>
+                <div className="flex-1 min-w-0">
+                  <p className={`text-sm font-medium ${r.type==='error'?'text-red-200':r.type==='warning'?'text-yellow-200':'text-white'}`}>{r.name}</p>
+                  <p className="text-xs text-slate-500 font-mono mt-0.5">{r.url}</p>
+                </div>
+                <span className={`text-xs font-mono px-2 py-0.5 rounded ${r.code===r.expected?'text-slate-500':'text-red-400 font-bold bg-red-500/10'}`}>
+                  HTTP {r.code||'—'}
+                </span>
+                <span className={`text-xs shrink-0 ${r.time_ms>3000?'text-red-400 font-semibold':r.time_ms>1500?'text-yellow-400':'text-slate-500'}`}>
+                  {r.time_ms}мс
+                </span>
+                <span className={`text-xs px-2.5 py-1 rounded-full shrink-0 ${typeBadge[r.type]}`}>
+                  {typeLabel[r.type]}
+                </span>
+                <span className={`text-xs shrink-0 max-w-[200px] truncate ${r.type==='error'?'text-red-400':r.type==='warning'?'text-yellow-400':'text-green-400'}`}>
+                  {r.msg}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* History */}
+      <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-slate-700">
+          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">История аудитов</span>
+        </div>
+        {history.length === 0 ? (
+          <p className="text-center py-10 text-slate-600 text-sm">Нет истории. Запустите первый аудит.</p>
+        ) : (
+          <div className="divide-y divide-slate-700/50">
+            {history.map((run,i) => (
+              <div key={i}>
+                <button onClick={()=>setExpandedRun(expandedRun===i?null:i)}
+                  className="w-full flex items-center gap-3 px-5 py-3.5 hover:bg-slate-700/30 transition-colors text-left">
+                  <span className="text-xs text-slate-500 shrink-0 w-32">{run.dt}</span>
+                  <span className="flex-1 text-sm text-slate-300">Проверено {run.total||run.results?.length||0} URL</span>
+                  {(run.errors||0) > 0 &&
+                    <span className="text-xs bg-red-500/15 text-red-400 border border-red-500/20 px-2.5 py-0.5 rounded-full">{run.errors} ошибок</span>}
+                  {(run.warnings||0) > 0 &&
+                    <span className="text-xs bg-yellow-500/15 text-yellow-400 border border-yellow-500/20 px-2.5 py-0.5 rounded-full">{run.warnings} предупреждений</span>}
+                  {(run.errors||0)===0 && (run.warnings||0)===0 &&
+                    <span className="text-xs bg-green-500/15 text-green-400 border border-green-500/20 px-2.5 py-0.5 rounded-full">Всё ОК</span>}
+                  <Icon d={expandedRun===i?"M5 15l7-7 7 7":"M19 9l-7 7-7-7"} size={14} className="text-slate-600 shrink-0"/>
+                </button>
+                {expandedRun===i && (
+                  <div className="px-5 pb-4 space-y-1 bg-slate-900/30">
+                    {(run.results||[]).map((r,j) => (
+                      <div key={j} className={`flex items-center gap-3 py-2 border-b border-slate-700/30 last:border-0 ${r.type==='error'?'bg-red-500/5 rounded px-2':''}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${typeDot[r.type]}`}/>
+                        <span className={`text-xs flex-1 font-medium ${r.type==='error'?'text-red-300':r.type==='warning'?'text-yellow-300':'text-slate-400'}`}>{r.name}</span>
+                        <span className="text-xs text-slate-600 font-mono">HTTP {r.code}</span>
+                        <span className={`text-xs ${r.time_ms>3000?'text-red-400':r.time_ms>1500?'text-yellow-400':'text-slate-600'}`}>{r.time_ms}мс</span>
+                        <span className={`text-xs ${r.type==='error'?'text-red-400':r.type==='warning'?'text-yellow-400':'text-slate-500'}`}>{r.msg}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // =========================================================
 // MAIN APP
 // =========================================================
@@ -735,8 +983,10 @@ function App() {
   ]);
   const [counts, setCounts] = useState({});
 
+  const recentRef = useRef(new Set());
+
   const addLog = useCallback((msg, type='info') => {
-    setLogs(p => [{time:new Date().toLocaleTimeString(), msg, type}, ...p].slice(0,80));
+    setLogs(p => [{time:new Date().toLocaleTimeString(), msg, type}, ...p].slice(0,120));
   }, []);
 
   // Load lead counts on mount
@@ -744,14 +994,29 @@ function App() {
     api('leads').then(r=>{ if(r.ok) setCounts(r.counts); });
   }, []);
 
-  // Simulate agent events
+  // Simulate agent events — без дублей
   useEffect(() => {
     const running = SEO_AGENTS_CFG.filter(a=>agentStates[a.id]==='running');
     if (!running.length) return;
     const id = setInterval(() => {
       const ag = running[Math.floor(Math.random()*running.length)];
-      const ev = ag.events[Math.floor(Math.random()*ag.events.length)];
-      addLog(`[${ag.name}] ${ev}`, 'success');
+      // Выбираем событие которого ещё не было недавно
+      const available = ag.events.filter(e => {
+        const key = `${ag.id}:${typeof e==='string'?e:e.msg}`;
+        return !recentRef.current.has(key);
+      });
+      const pool = available.length ? available : ag.events;
+      const ev   = pool[Math.floor(Math.random()*pool.length)];
+      const evMsg  = typeof ev === 'string' ? ev : ev.msg;
+      const evType = typeof ev === 'string' ? 'success' : ev.type;
+      const key    = `${ag.id}:${evMsg}`;
+      recentRef.current.add(key);
+      // Ограничиваем размер сета
+      if (recentRef.current.size > 20) {
+        const first = recentRef.current.values().next().value;
+        recentRef.current.delete(first);
+      }
+      addLog(`[${ag.name}] ${evMsg}`, evType);
     }, 3500);
     return () => clearInterval(id);
   }, [agentStates, addLog]);
@@ -766,11 +1031,12 @@ function App() {
   };
 
   const nav = [
-    { id:'dashboard', label:'Дашборд',       icon:icons.dashboard },
-    { id:'agents',    label:'SEO Агенты',     icon:icons.bot       },
-    { id:'leads',     label:'CRM Заявки',     icon:icons.leads     },
-    { id:'analytics', label:'Позиции',        icon:icons.analytics },
-    { id:'settings',  label:'Настройки',      icon:icons.settings  },
+    { id:'dashboard', label:'Дашборд',            icon:icons.dashboard },
+    { id:'agents',    label:'SEO Агенты',          icon:icons.bot       },
+    { id:'leads',     label:'CRM Заявки',          icon:icons.leads     },
+    { id:'analytics', label:'Позиции',             icon:icons.analytics },
+    { id:'audit',     label:'Технический аудит',   icon:icons.warning   },
+    { id:'settings',  label:'Настройки',           icon:icons.settings  },
   ];
 
   return (
@@ -832,6 +1098,7 @@ function App() {
           {tab==='agents'    && <TabAgents agentStates={agentStates} toggleAgent={toggleAgent} logs={logs}/>}
           {tab==='leads'     && <TabLeads />}
           {tab==='analytics' && <TabAnalytics />}
+          {tab==='audit'     && <TabAudit />}
           {tab==='settings'  && <TabSettings />}
         </main>
       </div>
