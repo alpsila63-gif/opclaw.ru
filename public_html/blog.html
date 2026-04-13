@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог об AI и нейросетях — AGISI | Статьи о разработке AI-агентов</title>
+    <meta name="description" content="Блог AGISI: статьи о разработке AI-агентов, внедрении ИИ в бизнес, RAG-системах, чат-ботах и трендах искусственного интеллекта. Практические кейсы и гайды.">
+    <meta name="keywords" content="блог AI, статьи об искусственном интеллекте, разработка AI агентов блог, RAG системы статьи, чат-боты для бизнеса, тренды ИИ 2026, внедрение нейросетей кейсы, AI автоматизация">
+    <meta name="author" content="AGISI">
+    <link rel="canonical" href="https://opclaw.ru/blog.html">
+    <meta name="geo.region" content="RU-MOW">
+    <meta name="geo.placename" content="Москва">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Блог об AI и нейросетях — AGISI">
+    <meta property="og:description" content="Статьи о разработке AI-агентов, внедрении ИИ и трендах нейросетей. Практические кейсы от студии AGISI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://opclaw.ru/blog.html">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="AGISI">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0EA5E9">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Главная",
+                "item": "https://opclaw.ru/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Блог",
+                "item": "https://opclaw.ru/blog.html"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Structured Data: Blog -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Блог AGISI",
+        "description": "Статьи о разработке AI-агентов, внедрении ИИ в бизнес и трендах искусственного интеллекта",
+        "url": "https://opclaw.ru/blog.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "AGISI",
+            "url": "https://opclaw.ru"
+        },
+        "blogPost": [
+            {
+                "@type": "BlogPosting",
+                "headline": "AI-агенты в 2026: главные тренды и прогнозы",
+                "datePublished": "2026-04-02",
+                "author": {"@type": "Organization", "name": "AGISI"},
+                "description": "Обзор ключевых трендов в разработке AI-агентов: мультимодальность, автономность, интеграция с бизнес-процессами."
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "Как мы автоматизировали поддержку для e-commerce на 80%",
+                "datePublished": "2026-03-28",
+                "author": {"@type": "Organization", "name": "AGISI"},
+                "description": "Подробный разбор кейса: от аудита до внедрения RAG-бота для интернет-магазина."
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "RAG vs Fine-tuning: что выбрать для вашего бизнеса",
+                "datePublished": "2026-03-20",
+                "author": {"@type": "Organization", "name": "AGISI"},
+                "description": "Сравнение двух подходов к кастомизации AI-моделей для бизнеса."
+            }
+        ]
+    }
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107025632', 'ym');
+        ym(107025632, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+</head>
+<body>
+    <noscript><div><img src="https://mc.yandex.ru/watch/107025632" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <span class="top-bar-location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Москва
+            </span>
+            <span class="top-bar-divider"></span>
+            <a href="tel:+79528142010" class="top-bar-phone">+7 (952) 814-20-10</a>
+            <span class="top-bar-divider"></span>
+            <span class="top-bar-free">Бесплатная консультация</span>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <img src="/images/logo-full.png" alt="AGISI — AI Agent Systems" class="nav-logo-full">
+            </a>
+            <ul class="nav-links">
+                <li><a href="/#services">Услуги</a></li>
+                <li><a href="/#cases">Кейсы</a></li>
+                <li><a href="/#pricing">Цены</a></li>
+                <li><a href="/#about">О нас</a></li>
+                <li><a href="/blog.html" style="color: var(--primary);">Блог</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+                <li><a href="/#contact" class="nav-cta">Обсудить проект</a></li>
+            </ul>
+            <div class="nav-right-mobile">
+                <a href="tel:+79528142010" class="nav-cta-mobile">Позвонить</a>
+                <button class="nav-burger" id="navBurger" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/#services" onclick="closeMobile()">Услуги</a>
+        <a href="/#cases" onclick="closeMobile()">Кейсы</a>
+        <a href="/#pricing" onclick="closeMobile()">Цены</a>
+        <a href="/#about" onclick="closeMobile()">О нас</a>
+        <a href="/blog.html" onclick="closeMobile()">Блог</a>
+        <a href="/#faq" onclick="closeMobile()">FAQ</a>
+        <a href="/#contact" onclick="closeMobile()">Обсудить проект</a>
+    </div>
+
+    <!-- BLOG HEADER -->
+    <div class="blog-page-header">
+        <div class="section-container">
+            <span class="section-label">Блог</span>
+            <h1 class="section-title">Новости и статьи об AI</h1>
+            <p class="section-desc">Делимся опытом разработки AI-агентов, трендами и практическими кейсами внедрения ИИ в бизнес.</p>
+            <div class="blog-page-categories">
+                <button class="blog-category-btn active" data-category="all">Все</button>
+                <button class="blog-category-btn" data-category="trends">Тренды</button>
+                <button class="blog-category-btn" data-category="cases">Кейсы</button>
+                <button class="blog-category-btn" data-category="guides">Гайды</button>
+                <button class="blog-category-btn" data-category="news">Новости</button>
+                <button class="blog-category-btn" data-category="tech">Технологии</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOG ARTICLES -->
+    <div class="blog-page-grid">
+        <article class="blog-card fade-in" data-category="trends">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #E0F2FE, #BAE6FD);">
+                <span class="blog-card-category">Тренды</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">2 апреля 2026</time>
+                <h3><a href="#">AI-агенты в 2026: главные тренды и прогнозы</a></h3>
+                <p>Обзор ключевых трендов: мультимодальные агенты, автономность нового уровня, интеграция AI в каждый бизнес-процесс и расцвет мультиагентных систем.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="cases">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #F0FDF4, #BBF7D0);">
+                <span class="blog-card-category">Кейс</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">28 марта 2026</time>
+                <h3><a href="#">Как мы автоматизировали поддержку для e-commerce на 80%</a></h3>
+                <p>Подробный разбор: аудит процессов, выбор модели, внедрение RAG-бота и результаты через 3 месяца работы.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="guides">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #FEF3C7, #FDE68A);">
+                <span class="blog-card-category">Гайд</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">20 марта 2026</time>
+                <h3><a href="#">RAG vs Fine-tuning: что выбрать для вашего бизнеса</a></h3>
+                <p>Сравнение двух подходов к кастомизации AI-моделей. Когда нужен RAG, когда fine-tuning, а когда оба.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="tech">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #EDE9FE, #C4B5FD);">
+                <span class="blog-card-category">Технологии</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">14 марта 2026</time>
+                <h3><a href="#">Claude vs GPT-4o vs YandexGPT: сравнение для бизнес-задач</a></h3>
+                <p>Объективное сравнение трёх моделей на реальных задачах: классификация, генерация, работа с русским языком.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="news">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #FCE7F3, #F9A8D4);">
+                <span class="blog-card-category">Новости</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">7 марта 2026</time>
+                <h3><a href="#">Российский рынок AI в 2026: цифры и перспективы</a></h3>
+                <p>Обзор рынка искусственного интеллекта в России: объём, темпы роста, основные игроки и прогнозы на ближайшие годы.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="guides">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #DBEAFE, #93C5FD);">
+                <span class="blog-card-category">Гайд</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">28 февраля 2026</time>
+                <h3><a href="#">Как подготовить данные для AI-агента: пошаговый гайд</a></h3>
+                <p>Практическое руководство по подготовке корпоративных данных для обучения AI: форматы, очистка, структурирование.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="cases">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #D1FAE5, #6EE7B7);">
+                <span class="blog-card-category">Кейс</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">20 февраля 2026</time>
+                <h3><a href="#">AI-квалификация лидов: +35% конверсии для агентства недвижимости</a></h3>
+                <p>Как AI-агент в Telegram за месяц увеличил конверсию в сделку и освободил менеджеров от рутинной квалификации.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="trends">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #FFF7ED, #FED7AA);">
+                <span class="blog-card-category">Тренды</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">12 февраля 2026</time>
+                <h3><a href="#">Мультиагентные системы: когда один AI-агент не справляется</a></h3>
+                <p>Как организовать работу нескольких AI-агентов вместе: архитектуры, паттерны маршрутизации и реальные сценарии.</p>
+            </div>
+        </article>
+
+        <article class="blog-card fade-in" data-category="tech">
+            <div class="blog-card-img" style="background: linear-gradient(135deg, #E0E7FF, #A5B4FC);">
+                <span class="blog-card-category">Технологии</span>
+            </div>
+            <div class="blog-card-body">
+                <time class="blog-card-date">5 февраля 2026</time>
+                <h3><a href="#">LangChain vs LlamaIndex: выбор фреймворка для RAG</a></h3>
+                <p>Детальное сравнение двух популярных фреймворков для построения RAG-систем. Плюсы, минусы и рекомендации.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content fade-in">
+            <h2>Нужен AI-агент для вашего бизнеса?</h2>
+            <p>Расскажите о задаче — мы бесплатно оценим возможности автоматизации.</p>
+            <a href="/#contact" class="btn btn-primary btn-white">
+                Бесплатная консультация
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <a href="/" class="footer-logo">
+                    <img src="/images/logo-full.png" alt="AGISI" class="footer-logo-img">
+                </a>
+                <p class="footer-desc">Студия разработки AI-агентов в Москве. Создаём интеллектуальные решения для бизнеса.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Услуги</h4>
+                <ul>
+                    <li><a href="/#services">AI-агенты</a></li>
+                    <li><a href="/#services">Чат-боты</a></li>
+                    <li><a href="/#services">RAG-системы</a></li>
+                    <li><a href="/#services">Интеграции</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Компания</h4>
+                <ul>
+                    <li><a href="/#about">О нас</a></li>
+                    <li><a href="/#cases">Кейсы</a></li>
+                    <li><a href="/blog.html">Блог</a></li>
+                    <li><a href="/#contact">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><a href="tel:+79528142010">+7 (952) 814-20-10</a></li>
+                    <li><a href="mailto:hello@opclaw.ru">hello@opclaw.ru</a></li>
+                    <li><a href="https://t.me/agi_studio" target="_blank" rel="noopener">Telegram</a></li>
+                    <li><span>Москва, Россия</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AGISI. Разработка AI-агентов в Москве.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
